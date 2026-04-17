@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c72qnrhoenay4"]
+
+[ext_resource type="Script" uid="uid://b23hql511nmqt" path="res://ui/EnemyBlock.gd" id="1_dkxyk"]
+
+[node name="EnemyBlock" type="Panel" unique_id=1736679433]
+custom_minimum_size = Vector2(80, 120)
+script = ExtResource("1_dkxyk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=380031651]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1886916625]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArtPlaceholder" type="ColorRect" parent="VBoxContainer" unique_id=481971222]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+size_flags_vertical = 3

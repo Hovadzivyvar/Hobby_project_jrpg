@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://chdxuss38wuqn"]
+
+[ext_resource type="Script" uid="uid://cu3ilh50fpagp" path="res://scenes/CharacterBlock.gd" id="1_lfudu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23dij"]
+bg_color = Color(0.3613347, 0.6918918, 0.30101013, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orgp1"]
+bg_color = Color(0.3678215, 0.7125961, 0.9051178, 1)
+
+[node name="CharacterBlock" type="Panel" unique_id=1944500541]
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 202.0
+offset_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_lfudu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=381301423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1330581890]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HPControl" type="Control" parent="VBoxContainer" unique_id=779276887]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer/HPControl" unique_id=932736624]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_23dij")
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer/HPControl" unique_id=1735393555]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_orgp1")
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/HPControl" unique_id=1355142903]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPControl" type="Control" parent="VBoxContainer" unique_id=1146953479]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MPBar" type="ProgressBar" parent="VBoxContainer/MPControl" unique_id=184526589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+show_percentage = false
+
+[node name="MPLabel" type="Label" parent="VBoxContainer/MPControl" unique_id=1300729595]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer" unique_id=179393868]
+layout_mode = 2
+mouse_filter = 1

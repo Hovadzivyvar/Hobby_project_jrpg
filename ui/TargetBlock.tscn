@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ulyx3ym2n602"]
+
+[ext_resource type="Script" uid="uid://dqg7f2m1ymkrs" path="res://ui/TargetBlock.gd" id="1_b3hfk"]
+
+[node name="TargetBlock" type="Panel" unique_id=1612586787]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_b3hfk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=808657408]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1193707609]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer" unique_id=1254489951]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/HPBar" unique_id=1181196494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPBar" type="ProgressBar" parent="VBoxContainer" unique_id=1233838283]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+show_percentage = false
+
+[node name="MPLabel" type="Label" parent="VBoxContainer/MPBar" unique_id=446423130]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1

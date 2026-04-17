@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://d3cur03udh5uc"]
+
+[ext_resource type="Script" uid="uid://bnfjy5h0tb5s5" path="res://scenes/BattleScene.gd" id="1_gkmpl"]
+[ext_resource type="Script" uid="uid://wkq0r20puhqr" path="res://scenes/ActionMenu.gd" id="1_ltshs"]
+[ext_resource type="Script" uid="uid://df27llmmwom2s" path="res://battle/ChainManager.gd" id="3_3mvhd"]
+[ext_resource type="PackedScene" uid="uid://djjoeeu27uoe5" path="res://ui/AbilityMenu.tscn" id="3_bsu3s"]
+[ext_resource type="Script" uid="uid://bh8fa0r3yyolv" path="res://battle/DamageCalculator.gd" id="4_28s16"]
+[ext_resource type="PackedScene" uid="uid://b8nas1x8phhj" path="res://ui/ItemMenu.tscn" id="4_sdfhe"]
+[ext_resource type="Script" uid="uid://bsmxe7iaqb78n" path="res://battle/TurnManager.gd" id="5_ftvu5"]
+[ext_resource type="PackedScene" uid="uid://cxoc8wqtmo6vp" path="res://ui/TargetPopup.tscn" id="5_sdfhe"]
+[ext_resource type="Script" uid="uid://dbilbtmdnhfsg" path="res://battle/EnemyAI.gd" id="9_hrc4b"]
+[ext_resource type="Script" uid="uid://dw54nbx5poqnt" path="res://battle/ActionExecutor.gd" id="10_sgm0l"]
+[ext_resource type="Script" uid="uid://dcxbsfhkhes5u" path="res://battle/BattleMenuManager.gd" id="11_a4ns4"]
+[ext_resource type="Script" uid="uid://hu4qccfa1uxg" path="res://battle/StatusManager.gd" id="12_7acxt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gkmpl"]
+
+[node name="BattleScene" type="Node2D" unique_id=454361335]
+script = ExtResource("1_gkmpl")
+
+[node name="BattleUI" type="CanvasLayer" parent="." unique_id=48924953]
+follow_viewport_enabled = true
+
+[node name="MainLayout" type="VBoxContainer" parent="BattleUI" unique_id=138927708]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopArea" type="Control" parent="BattleUI/MainLayout" unique_id=872158372]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="TextureRect" type="TextureRect" parent="BattleUI/MainLayout/TopArea" unique_id=873310916]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = SubResource("PlaceholderTexture2D_gkmpl")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="SectionsRow" type="HBoxContainer" parent="BattleUI/MainLayout/TopArea" unique_id=19746769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.55
+
+[node name="EnemySection" type="VBoxContainer" parent="BattleUI/MainLayout/TopArea/SectionsRow" unique_id=2092791253]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="EnemyContainer" type="HBoxContainer" parent="BattleUI/MainLayout/TopArea/SectionsRow/EnemySection" unique_id=1704334929]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PartyArtSection" type="Control" parent="BattleUI/MainLayout/TopArea/SectionsRow" unique_id=542380204]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.45
+
+[node name="EnemyHPBar" type="Control" parent="BattleUI/MainLayout/TopArea" unique_id=395020059]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HPBar" type="ProgressBar" parent="BattleUI/MainLayout/TopArea/EnemyHPBar" unique_id=1887625190]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="BattleUI/MainLayout/TopArea/EnemyHPBar" unique_id=346049041]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChainLabel" type="Label" parent="BattleUI/MainLayout/TopArea" unique_id=1815195706]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 153.0
+offset_right = 428.0
+offset_bottom = 84.0
+text = "CHAIN x1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyActionLabel" type="Label" parent="BattleUI/MainLayout/TopArea" unique_id=2017547852]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[node name="BottomPanel" type="Control" parent="BattleUI/MainLayout" unique_id=1839417598]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="CharacterGrid" type="GridContainer" parent="BattleUI/MainLayout/BottomPanel" unique_id=1845763716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="ActionMenu" type="Panel" parent="BattleUI/MainLayout/BottomPanel" unique_id=1513726762]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltshs")
+
+[node name="AttackBtn" type="Button" parent="BattleUI/MainLayout/BottomPanel/ActionMenu" unique_id=699737676]
+layout_mode = 0
+offset_right = 217.0
+offset_bottom = 120.0
+text = "Attack"
+
+[node name="DefenseBtn" type="Button" parent="BattleUI/MainLayout/BottomPanel/ActionMenu" unique_id=1818503883]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 1.0
+offset_right = 422.0
+offset_bottom = 122.0
+text = "Defense"
+
+[node name="AbilityBtn" type="Button" parent="BattleUI/MainLayout/BottomPanel/ActionMenu" unique_id=1935461923]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 123.0
+offset_right = 221.0
+offset_bottom = 225.0
+text = "Ability"
+
+[node name="ItemBtn" type="Button" parent="BattleUI/MainLayout/BottomPanel/ActionMenu" unique_id=854444094]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 123.0
+offset_right = 423.0
+offset_bottom = 224.0
+text = "Item"
+
+[node name="AbilityMenu" parent="BattleUI/MainLayout/BottomPanel" unique_id=391443711 instance=ExtResource("3_bsu3s")]
+visible = false
+layout_mode = 1
+
+[node name="ItemMenu" parent="BattleUI/MainLayout/BottomPanel" unique_id=1560749061 instance=ExtResource("4_sdfhe")]
+visible = false
+layout_mode = 1
+
+[node name="TargetPopup" parent="BattleUI/MainLayout/BottomPanel" unique_id=1111062058 instance=ExtResource("5_sdfhe")]
+layout_mode = 1
+
+[node name="ChainManager" type="Node" parent="." unique_id=1726074669]
+script = ExtResource("3_3mvhd")
+
+[node name="DamageCalculator" type="Node" parent="." unique_id=1653241544]
+script = ExtResource("4_28s16")
+
+[node name="TurnManager" type="Node" parent="." unique_id=1189923455]
+script = ExtResource("5_ftvu5")
+
+[node name="EnemyAI" type="Node" parent="." unique_id=2071945418]
+script = ExtResource("9_hrc4b")
+
+[node name="ActionExecutor" type="Node" parent="." unique_id=321079641]
+script = ExtResource("10_sgm0l")
+
+[node name="BattleMenuManager" type="Node" parent="." unique_id=2114332044]
+script = ExtResource("11_a4ns4")
+
+[node name="StatusManager" type="Node" parent="." unique_id=808811619]
+script = ExtResource("12_7acxt")

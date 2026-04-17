@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cxoc8wqtmo6vp"]
+
+[ext_resource type="Script" uid="uid://b4tjsxl8mj3o8" path="res://ui/TargetPopup.gd" id="1_lt4fs"]
+
+[node name="TargetPopup" type="Panel" unique_id=1111062058]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_lt4fs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1744470956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1078525239]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HeaderRow" unique_id=1463970980]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "←"
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/HeaderRow" unique_id=1043685542]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select Target"
+
+[node name="TargetGrid" type="GridContainer" parent="VBoxContainer" unique_id=339724392]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://djjoeeu27uoe5"]
+
+[ext_resource type="Script" uid="uid://satclxhdcoyn" path="res://ui/AbilityMenu.gd" id="1_7c1ai"]
+
+[node name="AbilityMenu" type="Panel" unique_id=391443711]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7c1ai")
+metadata/_edit_vertical_guides_ = [24.0]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1134436970]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1967583878]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HeaderRow" unique_id=451592982]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "←"
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/HeaderRow" unique_id=75638171]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Abilities"
+
+[node name="MPLabel" type="Label" parent="VBoxContainer" unique_id=754889704]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1941094321]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbilityList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=12870550]
+layout_mode = 2
+size_flags_horizontal = 3
