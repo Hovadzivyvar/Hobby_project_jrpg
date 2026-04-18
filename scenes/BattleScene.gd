@@ -85,6 +85,7 @@ func _setup_party() -> void:
 		var block: CharacterBlock = block_scene.instantiate()
 		character_grid.add_child(block)
 		block.setup(data)
+		block.status_manager_ref = status_manager
 		if not block.block_tapped.is_connected(_on_block_tapped):
 			block.block_tapped.connect(_on_block_tapped)
 		if not block.block_long_pressed.is_connected(_on_block_long_pressed):
@@ -95,7 +96,7 @@ func _setup_party() -> void:
 func _on_block_long_pressed(block: CharacterBlock) -> void:
 	if current_phase != Phase.PLAYER:
 		return
-	if not block.character_data.is_alive:
+	if not block.character_data.is_alive or not status_manager.can_act(block.character_data):
 		return
 	battle_menu_manager.open_action_menu(block)
 
@@ -104,7 +105,7 @@ func _on_block_tapped(block: CharacterBlock) -> void:
 		return
 	if not block.chosen_action or block.has_fired:
 		return
-	if not block.character_data.is_alive:
+	if not block.character_data.is_alive or not status_manager.can_act(block.character_data):
 		return
 	block.set_fired()
 	match block.chosen_action:
@@ -267,7 +268,7 @@ func _refresh_character_block(target: CharacterData) -> void:
 	action_executor.refresh_character_block(target)
 
 func _on_confuse_action(block: CharacterBlock) -> void:
-	if not block.character_data.is_alive:
+	if not block.character_data.is_alive or not status_manager.can_act(block.character_data):
 		return
 	# Pick random target including self
 	var all_targets = blocks.filter(func(b): return b.character_data.is_alive)

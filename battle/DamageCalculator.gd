@@ -69,11 +69,11 @@ func calculate_enemy_damage(
 	if damage_type == AbilityData.DamageType.PHYSICAL:
 		var atk = float(attacker.get_atk())
 		var def = float(defender.get_def())
-		base = (atk * atk) / def
+		base = (atk * atk) / max(def, 0.001)
 	else:
 		var mag = float(attacker.get_mag())
 		var spr = float(defender.get_spr())
-		base = (mag * mag) / spr
+		base = (mag * mag) / max(spr, 0.001)
 
 	# Element multiplier
 	var resistance = defender.get_resistance(element)

@@ -93,11 +93,18 @@ func set_defeated() -> void:
 	modulate = Color(0.2, 0.2, 0.2)
 	character_data.is_alive = false
 
+var status_manager_ref: StatusManager = null
+
+func has_status_incapacity() -> bool:
+	if not status_manager_ref:
+		return false
+	return not status_manager_ref.can_act(character_data)
+
 func reset() -> void:
 	has_fired = false
 	targeted_enemy = null
 	clear_action()
-	if character_data.is_alive:
+	if character_data.is_alive and not has_status_incapacity():
 		modulate = Color(1, 1, 1)
 											
 @onready var shield_bar = $VBoxContainer/HPControl/ShieldBar
