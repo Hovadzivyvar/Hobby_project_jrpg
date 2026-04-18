@@ -84,7 +84,10 @@ func _tick_character_statuses(block: CharacterBlock) -> void:
 			StatusEffect.Type.CONFUSE:
 				confuse_action.emit(block)
 		# Tick duration
+		print("TICKING: ", status.get_type_string(), "
+			 current: ", status.turns_remaining)
 		status.turns_remaining -= 1
+		print("RESULT: ", status.turns_remaining) 
 		if status.turns_remaining <= 0:
 			to_remove.append(status)
 			block_status_changed.emit(block)

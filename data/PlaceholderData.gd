@@ -165,7 +165,7 @@ static func create_enemies() -> Array[EnemyData]:
 		var basic_attack = EnemyAction.new()
 		basic_attack.action_name = "Attack"
 		basic_attack.ability = null
-		basic_attack.weight = 0.9
+		basic_attack.weight = 0.1
 		basic_attack.condition = EnemyAction.Condition.ALWAYS
 		basic_attack.target_strategy = EnemyAction.TargetStrategy.LOWEST_HP_PERCENT
 		data.action_pool.append(basic_attack)
@@ -173,7 +173,7 @@ static func create_enemies() -> Array[EnemyData]:
 		var special = EnemyAction.new()
 		special.action_name = config["extra_action"].ability_name
 		special.ability = config["extra_action"]
-		special.weight = 0.1
+		special.weight = 0.9
 		special.condition = EnemyAction.Condition.ALWAYS
 		special.target_strategy = EnemyAction.TargetStrategy.RANDOM_ALIVE
 		data.action_pool.append(special)
@@ -230,7 +230,7 @@ static func _create_sleep_ability() -> AbilityData:
 	ability.hits = 1
 	ability.inflicts_status = true
 	ability.status_type = StatusEffect.Type.SLEEP
-	ability.status_duration = 2
+	ability.status_duration = 3
 	ability.status_chance = 0.6
 	return ability
 

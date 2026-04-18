@@ -32,8 +32,8 @@ func setup(
 
 func register_fired() -> void:
 	fired_count += 1
-	var alive_count = blocks.filter(func(b): return b.character_data.is_alive).size()
-	if fired_count >= alive_count:
+	var can_act_count = blocks.filter(func(b): return b.character_data.is_alive and status_manager.can_act(b.character_data)).size()
+	if fired_count >= can_act_count:
 		start_enemy_phase()
 
 func set_selected_enemy(enemy_block: EnemyBlock) -> void:
@@ -159,14 +159,12 @@ func _execute_enemy_action(
 		element)
 		
 	# After applying damage:
-	if ability and ability.inflicts_status and target_block:
-		var chance_roll = randf()
-		if chance_roll <= ability.status_chance:
-			status_manager.try_apply_status(
-			target_block.character_data,
-			ability.status_type,
-			ability.status_duration,
-			ability.status_potency)
+			
+		# Apply debuffs to target if ability has mods
+	if ability and ability.has_any_mods():
+		var effect = ActiveEffect.from_ability(
+			ability, target_block.character_data.max_hp, ability.effect_is_removable)
+		target_block.character_data.apply_effect(effect)
 
 	# Apply cover damage reduction if covering
 	var coverer = _get_coverer(target_block.character_data)
@@ -176,12 +174,16 @@ func _execute_enemy_action(
 	_apply_character_damage(target_block, damage)
 	print(enemy_block.enemy_data.enemy_name, " hits ",
 		target_block.character_data.char_name, " for ", damage)
-
-	# Apply debuffs to target if ability has mods
-	if ability and ability.has_any_mods():
-		var effect = ActiveEffect.from_ability(
-			ability, target_block.character_data.max_hp, ability.effect_is_removable)
-		target_block.character_data.apply_effect(effect)
+		
+	if ability and ability.inflicts_status and target_block:
+		var chance_roll = randf()
+		if chance_roll <= ability.status_chance:
+			status_manager.try_apply_status(
+			target_block.character_data,
+			ability.status_type,
+			ability.status_duration,
+			ability.status_potency)
+		
 
 func _get_coverer(target: CharacterData) -> CharacterBlock:
 	# Check party cover first
